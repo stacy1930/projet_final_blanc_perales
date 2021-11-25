@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ folder }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ folder }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- <div id="container"> -->
+  <ion-list id="book-list">
+    <ion-list-header>Livres</ion-list-header>
+
+    <ion-item *ngFor="let book of books" lines="none">
+      <ion-label>{{ book.title }}</ion-label>
+    </ion-item>
+  </ion-list>
+  <!-- </div> -->
+</ion-content>
