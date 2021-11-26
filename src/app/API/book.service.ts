@@ -41,6 +41,14 @@ export class BookService {
     );
   }
 
+  addGenre(genre: Genre): Observable<Genre> {
+    return this.http.post<Genre>(
+      `${this.apiBook}genre`,
+      genre,
+      this.httpOptions
+    );
+  }
+
   deleteBook(
     book: Books | number
   ): Observable<Books> {
