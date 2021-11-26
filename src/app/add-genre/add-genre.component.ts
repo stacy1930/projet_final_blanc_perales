@@ -11,10 +11,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class AddGenreComponent implements OnInit {
 
-  submitted: Boolean = false;
 
-  createGenreForm = this.formBuilder.group({
-    name: ['', Validators.required]
+  createBookForm = this.formBuilder.group({
+    name: ['', Validators.required],
   });
 
   constructor(private bookService: BookService, private formBuilder: FormBuilder) { }
@@ -23,10 +22,10 @@ export class AddGenreComponent implements OnInit {
 
 
   onSubmit() {
-    this.submitted = true;
 
-    console.log(this.createGenreForm.value.name);
-    // this.bookService.addGenre(this.createGenreForm.value).subscribe(
+    console.log(this.createBookForm.value);
+
+    // this.bookService.addGenre(this.createBookForm.value).subscribe(
     //   (response) => (
     //     console.log("Success ADD !", response)
     //   ),
