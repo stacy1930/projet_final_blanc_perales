@@ -6,7 +6,7 @@ export class Books {
         public title: string,
         public author: string,
         public image: string,
-        public genre: Genre,
+        public genreId: Genre,
         public description: string,
     ) { }
 }

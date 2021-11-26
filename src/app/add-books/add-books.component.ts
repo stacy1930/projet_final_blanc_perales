@@ -21,7 +21,7 @@ export class AddBooksComponent implements OnInit {
   createBookForm = this.formBuilder.group({
     title: ['', Validators.required],
     author: ['', Validators.required],
-    genre: ['', Validators.required],
+    genreId: ['', Validators.required],
     image: ['', Validators.required],
     description: ['', Validators.required]
   });
@@ -36,14 +36,14 @@ export class AddBooksComponent implements OnInit {
     this.submitted = true;
 
     console.log(this.createBookForm.value);
-    // this.bookService.addBook(this.createBookForm.value).subscribe(
-    //   (response) => (
-    //     console.log("Success ADD !", response)
-    //   ),
-    //   (error) => (
-    //     console.error("Error ADD !", error)
-    //   )
-    // )
+    this.bookService.addBook(this.createBookForm.value).subscribe(
+      (response) => (
+        console.log("Success ADD !", response)
+      ),
+      (error) => (
+        console.error("Error ADD !", error)
+      )
+    )
   }
 
 }

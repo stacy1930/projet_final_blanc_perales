@@ -11,10 +11,11 @@ import { ListBooksComponent } from './list-books/list-books.component';
 import { DetailBookComponent } from './detail-book/detail-book.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { EditBookComponent } from './edit-book/edit-book.component';
 
 
 @NgModule({
-  declarations: [AppComponent, AddBooksComponent, ListBooksComponent, DetailBookComponent],
+  declarations: [AppComponent, AddBooksComponent, ListBooksComponent, DetailBookComponent, EditBookComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

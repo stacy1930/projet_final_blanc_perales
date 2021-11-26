@@ -35,7 +35,7 @@ export class BookService {
 
   addBook(book: Books): Observable<Books> {
     return this.http.post<Books>(
-      `${this.apiBook}/book`,
+      `${this.apiBook}livre`,
       book,
       this.httpOptions
     );
@@ -53,7 +53,7 @@ export class BookService {
 
 
   updateBook(book: Books, id: number): Observable<any> {
-    return this.http.put(`${this.apiBook}/${id}`, book, this.httpOptions);
+    return this.http.put(`${this.apiBook}livre/${id}`, book, this.httpOptions);
   }
 
 
