@@ -4,6 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Liste des livres</ion-title>
+    <img src="assets/icon/icon.png" slot="end" width="70" />
   </ion-toolbar>
 </ion-header>
 
@@ -14,23 +15,26 @@
     </ion-toolbar>
   </ion-header>
 
-  <!-- <div id="container"> -->
-  <ion-searchbar></ion-searchbar>
+  <ion-searchbar (keyup)="filterByTitle($event)"></ion-searchbar>
 
   <ion-list id="book-list">
     <ion-list-header>Livres</ion-list-header>
 
-    <ion-item *ngFor="let book of allBooks" lines="none">
-      <ion-item-divider>
+    <ion-item *ngFor="let book of allBooks$ | async" lines="none">
+      <ion-item-divider routerLink="/bookDetail/{{book.id}}">
+        <ion-avatar slot="start">
+          <img src="{{ book.image }}">
+        </ion-avatar>
         <ion-label>{{ book.title }}</ion-label>
+        <ion-icon name="arrow-forward" slot="end"></ion-icon>
+
       </ion-item-divider>
     </ion-item>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button routerLink="/book/add">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <!-- </div> -->
 </ion-content>

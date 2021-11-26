@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AddBooksComponent } from './add-books/add-books.component';
+import { DetailBookComponent } from './detail-book/detail-book.component';
 import { ListBooksComponent } from './list-books/list-books.component';
 
 const routes: Routes = [
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'book/add',
     component: AddBooksComponent
+  },
+  {
+    path: 'bookDetail/:id',
+    component: DetailBookComponent
   }
 ];
 

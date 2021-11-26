@@ -11,7 +11,7 @@ import { Genre } from '../models/Genre';
 })
 export class BookService {
 
-  apiBook = 'http://localhost:3000/';
+  apiBook = 'http://localhost:8080/';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -20,16 +20,22 @@ export class BookService {
   constructor(private http: HttpClient) { }
 
   getAllBooks(): Observable<Books[]> {
-    return this.http.get<Books[]>(`${this.apiBook}`, this.httpOptions);
+    return this.http.get<Books[]>(`${this.apiBook}livre`, this.httpOptions);
+  }
+
+  // FILTER BY NAME
+  applicationFilterByTitle(title: string): Observable<Books[]> {
+    let urlFilter = this.apiBook + 'livre?title=' + title;
+    return this.http.get<Books[]>(urlFilter, this.httpOptions);
   }
 
   getBookById(id: number): Observable<Books> {
-    return this.http.get<Books>(`${this.apiBook}/${id}`, this.httpOptions);
+    return this.http.get<Books>(`${this.apiBook}livre/${id}`, this.httpOptions);
   }
 
   addBook(book: Books): Observable<Books> {
     return this.http.post<Books>(
-      `${this.apiBook}`,
+      `${this.apiBook}/book`,
       book,
       this.httpOptions
     );
@@ -40,7 +46,7 @@ export class BookService {
   ): Observable<Books> {
     const id = typeof book === 'number' ? book : book.id;
     return this.http.delete<Books>(
-      `${this.apiBook}/${id}`,
+      `${this.apiBook}livre/${id}`,
       this.httpOptions
     );
   }
@@ -50,8 +56,10 @@ export class BookService {
     return this.http.put(`${this.apiBook}/${id}`, book, this.httpOptions);
   }
 
+
+
   getAllGenres(): Observable<Genre[]> {
-    return this.http.get<Genre[]>(`${this.apiBook}`, this.httpOptions);
+    return this.http.get<Genre[]>(`${this.apiBook}genre`, this.httpOptions);
   }
 
 }

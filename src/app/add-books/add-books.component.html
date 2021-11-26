@@ -4,6 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Ajouter un livre</ion-title>
+    <img src="assets/icon/icon.png" slot="end" width="70" />
   </ion-toolbar>
 </ion-header>
 
@@ -20,30 +21,36 @@
     </ion-card-header>
 
     <ion-card-content>
-      <form>
+      <form [formGroup]="createBookForm" (ngSubmit)="onSubmit()">
         <ion-item>
           <ion-label position="floating">Titre</ion-label>
-          <ion-input></ion-input>
+          <ion-input required formControlName="title"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating">Auteur</ion-label>
-          <ion-input></ion-input>
+          <ion-input formControlName="author" required></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating">Couverture (lien)</ion-label>
-          <ion-input></ion-input>
+          <ion-input formControlName="image" required></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label>Genre</ion-label>
-          <ion-select placeholder="Select One">
-            <ion-select-option *ngFor="let genre of allGenres" value="{{ genre.id }}">{{genre.name}}</ion-select-option>
+          <ion-select placeholder="Select One" formControlName="genre" required>
+            <ion-select-option *ngFor="let genre of allGenres$ | async" value="{{ genre.id }}">{{genre.name}}
+            </ion-select-option>
           </ion-select>
         </ion-item>
 
-        <ion-button color="secondary" class="btn-ajouter">Ajouter</ion-button>
+        <ion-item>
+          <ion-label position="floating">Résumé</ion-label>
+          <ion-textarea formControlName="description" required></ion-textarea>
+        </ion-item>
+
+        <ion-button color="tertiary" class="btn-ajouter ion-margin-top">Ajouter</ion-button>
 
       </form>
     </ion-card-content>

@@ -8,11 +8,15 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AddBooksComponent } from './add-books/add-books.component';
 import { ListBooksComponent } from './list-books/list-books.component';
+import { DetailBookComponent } from './detail-book/detail-book.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
-  declarations: [AppComponent, AddBooksComponent, ListBooksComponent],
+  declarations: [AppComponent, AddBooksComponent, ListBooksComponent, DetailBookComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,32 @@
+ion-toolbar{
+    --background : var(--ion-color-primary);
+    color: var(--ion-color-light);
+    ion-menu-button {
+      color: var(--ion-color-light);
+    }
+  }
+
+  ion-chip{
+    --background : var(--ion-color-secondary);
+    --color: white;
+  }
+
+  .resume{
+    text-align: justify;
+  }
+
+  .button-delete{
+    --border-radius	: 50px;
+  }
+
+  .title-book{
+    margin-left: 4%;
+    // color: #707070;
+    color: var(--ion-color-medium);
+  }
+
+  .icon-edit{
+    float: right;
+    margin-bottom: 4%;
+  }
+  

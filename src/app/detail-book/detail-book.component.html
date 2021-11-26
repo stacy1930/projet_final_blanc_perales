@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+  <ion-toolbar *ngIf="book$ | async as book">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{book.livre.title}}</ion-title>
+    <img src="assets/icon/icon.png" slot="end" width="70" />
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="book$ | async as book">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{book.livre.title}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-text>
+    <h2 class="title-book">{{book.livre.title}}</h2>
+  </ion-text>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-fab-button color="light" class="icon-edit" routerLink=" /book/add">
+          <ion-icon name="create"></ion-icon>
+        </ion-fab-button>
+      </ion-card-title>
+      <!-- 
+      </ion-card-title> -->
+    </ion-card-header>
+    <ion-card-content>
+      <img src="{{ book.livre.image }}" />
+      <ng-container *ngFor="let genre of allGenres$ | async">
+        <ion-chip *ngIf="genre.id === book.livre.genreId">
+          <ion-label>{{genre.name}}</ion-label>
+        </ion-chip>
+      </ng-container>
+
+      <ion-item lines="none">
+        <ion-item-divider>
+          <ion-text color="tertiary">
+            <h2>Auteur - {{book.livre.author}} </h2>
+          </ion-text>
+        </ion-item-divider>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-text class="resume">
+          <h2>Résumé</h2>
+          <p>
+            {{book.livre.description}}
+          </p>
+        </ion-text>
+      </ion-item>
+
+
+
+    </ion-card-content>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        <ion-button color="danger" class="button-delete" (click)="presentAlertMultipleButtons()">Supprimer le
+          livre
+        </ion-button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
