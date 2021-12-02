@@ -62,4 +62,8 @@ export class BookService {
     return this.http.get<Genre[]>(`${this.apiBook}genre`, this.httpOptions);
   }
 
+  getGenreById(id: number): Observable<Genre> {
+    return this.http.get<Genre>(`${this.apiBook}genre/${id}`, this.httpOptions);
+  }
+
 }

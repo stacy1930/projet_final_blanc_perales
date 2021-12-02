@@ -15,9 +15,13 @@ import { Genre } from '../models/Genre';
 export class EditBookComponent implements OnInit {
 
   public allGenres$: Observable<Genre[]>;
-  public book$: Observable<Books>;
+  public book$: Observable<any>;
+
+  public genreById: Observable<any>;
 
   public idBook = Number(this.route.snapshot.paramMap.get('id'));
+
+  public idGenre: number;
 
   submitted: Boolean = false;
 
@@ -36,19 +40,32 @@ export class EditBookComponent implements OnInit {
   ngOnInit() {
     this.allGenres$ = this.bookService.getAllGenres().pipe(tap(e => console.warn(e)));
 
+
     this.book$ = this.bookService
       .getBookById(this.idBook)
       .pipe(share(), tap(e => console.log(e)));
 
-    this.book$.subscribe((book) =>
+    this.book$.subscribe((book) => {
+      // const idGenre = book.livre.genreId;
+      // let genre: string;
+      // this.genreById = this.bookService.getGenreById(idGenre).pipe(tap(e => console.warn(e)));
+      // this.genreById.subscribe(data => {
+      //   genre = data.genre.name;
+      //   console.log(data.genre.name);
+      // });
       this.editBookForm.patchValue({
-        title: book.title,
-        author: book.author,
-        genreId: book.genreId,
-        image: book.image,
-        description: book.description
+        title: book.livre.title,
+        author: book.livre.author,
+        genreId: book.livre.genreId,
+        // genreId: genre,
+        image: book.livre.image,
+        description: book.livre.description
       })
+    }
     );
+
+    // 
+
   }
 
   onEditSubmit() {
