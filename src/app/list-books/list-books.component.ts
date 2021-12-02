@@ -19,6 +19,12 @@ export class ListBooksComponent implements OnInit {
   ngOnInit() {
     this.allBooks$ = this.bookService.getAllBooks().pipe(tap(e => console.warn(e)));
     // this.allBooks = books;
+    this.allBooks$.subscribe(
+      (response) => (
+        alert(JSON.stringify(response))
+      ),
+      (error) => alert(JSON.stringify(error))
+    );
   }
 
   filterByTitle(event) {
