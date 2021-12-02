@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { shareReplay, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { BookService } from '../API/book.service';
 import { books } from '../books';
 import { Books } from '../models/Books';
+import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
+// import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
 
 @Component({
   selector: 'app-list-books',
@@ -12,19 +15,21 @@ import { Books } from '../models/Books';
 })
 export class ListBooksComponent implements OnInit {
 
-  // public allBooks;
+  public allBooks;
   public allBooks$: Observable<Books[]>;
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService, private pdfGenerator: PDFGenerator) { }
 
   ngOnInit() {
     this.allBooks$ = this.bookService.getAllBooks().pipe(tap(e => console.warn(e)));
     // this.allBooks = books;
-    this.allBooks$.subscribe(
-      (response) => (
-        alert(JSON.stringify(response))
-      ),
-      (error) => alert(JSON.stringify(error))
-    );
+    // this.allBooks$.subscribe(
+    //   (response) => (
+    //     alert(JSON.stringify(response))
+    //   ),
+    //   (error) => alert(JSON.stringify(error))
+    // );
+
+    // this.allBooks = books;
   }
 
   filterByTitle(event) {
@@ -42,7 +47,37 @@ export class ListBooksComponent implements OnInit {
     }
   }
 
+  // ************************************************
+  // ************************************************
+  // Fonction a mettre dans detail book quand api ok
+  // ************************************************
+  // ************************************************
+  htmlSample: any;
+  getPDF() {
+    // this.htmlSample = document.getElementById('book-list').innerHTML;
+    this.htmlSample = `<h1>${document.getElementById('title-list').innerHTML}</h1>
+    ${document.getElementById('book-list').innerHTML}
+    `;
+    let options = {
+      documentSize: 'A4',
+      type: 'share'
+    }
 
+    this.pdfGenerator.fromData(this.htmlSample, options).
+      then(resolve => {
+        // alert(resolve);
+        console.log(resolve);
+
+      }
+      ).catch((err) => {
+        alert(err);
+      });
+  }
+
+  share() {
+    // Share via email
+    // this.socialSharing.share("coucou");
+  }
 
 
 }

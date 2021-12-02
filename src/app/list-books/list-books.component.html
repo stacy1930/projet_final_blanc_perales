@@ -18,8 +18,9 @@
   <ion-searchbar (keyup)="filterByTitle($event)"></ion-searchbar>
 
   <ion-list id="book-list">
-    <ion-list-header>Livres</ion-list-header>
+    <ion-list-header id="title-list">Livres</ion-list-header>
 
+    <!-- <ion-item *ngFor="let book of allBooks" lines="none" class="item-livre"> -->
     <ion-item *ngFor="let book of allBooks$ | async" lines="none">
       <ion-item-divider routerLink="/bookDetail/{{book.id}}">
         <ion-avatar slot="start">
@@ -31,6 +32,18 @@
       </ion-item-divider>
     </ion-item>
   </ion-list>
+
+  <!-- Button à mettre dans le détail d'un livre quand api ok -->
+  <ion-item>
+    <ion-button (click)="getPDF()">Convert to PDF</ion-button>
+  </ion-item>
+
+  <ion-item>
+    <ion-button (click)="share()">
+      <ion-icon name="share"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <!-- Fin button -->
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/book/add">
