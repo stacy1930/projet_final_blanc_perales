@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AddBooksComponent } from './add-books/add-books.component';
+import { AddGenreComponent } from './add-genre/add-genre.component';
 import { DetailBookComponent } from './detail-book/detail-book.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { ListBooksComponent } from './list-books/list-books.component';
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'book/add',
     component: AddBooksComponent
+  },
+  {
+    path: 'genre/add',
+    component: AddGenreComponent
   },
   {
     path: 'bookDetail/:id',
