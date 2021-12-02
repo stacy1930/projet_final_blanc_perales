@@ -71,15 +71,15 @@ export class EditBookComponent implements OnInit {
   onEditSubmit() {
     console.log(this.editBookForm.value);
 
-    // this.bookService
-    //   .updateBook(this.editBookForm.value, this.idBook)
-    //   .subscribe(
-    //     (response) => (
-    //       console.log('Success !', response),
-    //       this.router.navigate(['/books'])
-    //     ),
-    //     (error) => console.error('Error!', error)
-    //   );
+    this.bookService
+      .updateBook(this.editBookForm.value, this.idBook)
+      .subscribe(
+        (response) => (
+          console.log('Success !', response),
+          this.router.navigate(['/books'])
+        ),
+        (error) => console.error('Error!', error)
+      );
   }
 
 }
