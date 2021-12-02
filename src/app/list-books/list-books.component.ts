@@ -5,7 +5,6 @@ import { BookService } from '../API/book.service';
 import { books } from '../books';
 import { Books } from '../models/Books';
 import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
-// import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 @Component({
