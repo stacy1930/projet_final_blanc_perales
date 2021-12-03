@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Books } from '../models/Books';
 import { Genre } from '../models/Genre';
+import { shareReplay } from 'rxjs/operators';
 
 
 
@@ -72,8 +73,6 @@ export class BookService {
     return this.http.put(`${this.apiBook}livre/${id}`, book, this.httpOptions);
   }
 
-
-
   getAllGenres(): Observable<Genre[]> {
     return this.http.get<Genre[]>(`${this.apiBook}genre`, this.httpOptions);
   }
@@ -81,5 +80,16 @@ export class BookService {
   getGenreById(id: number): Observable<Genre> {
     return this.http.get<Genre>(`${this.apiBook}genre/${id}`, this.httpOptions);
   }
+
+  private _listners = new BehaviorSubject<any>(false);
+
+  private listen$ = this._listners.asObservable();
+    listen(): Observable<any>{
+      return this.listen$.pipe(shareReplay(1));
+    }
+
+    refresh(){
+      this._listners.next(1);
+    }
 
 }

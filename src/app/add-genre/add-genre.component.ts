@@ -29,6 +29,7 @@ export class AddGenreComponent implements OnInit {
     this.bookService.addGenre(this.createBookForm.value).subscribe(
       (response) => (
         console.log("Success ADD !", response),
+        this.bookService.refresh(),
         this.router.navigate(['/books'])
       ),
       (error) => (
@@ -36,6 +37,4 @@ export class AddGenreComponent implements OnInit {
       )
     )
   }
-
-
 }

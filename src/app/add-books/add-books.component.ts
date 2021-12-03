@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BookService } from '../API/book.service';
 import { genres } from '../genre';
 import { Genre } from '../models/Genre';
 import { tap } from 'rxjs/operators';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-add-books',
@@ -26,7 +28,7 @@ export class AddBooksComponent implements OnInit {
     description: ['', Validators.required]
   });
 
-  constructor(private bookService: BookService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private bookService: BookService, private formBuilder: FormBuilder, @Inject(DOCUMENT) private window: Document) { }
 
   ngOnInit() {
     this.allGenres$ = this.bookService.getAllGenres().pipe(tap(e => console.warn(e)));
@@ -38,7 +40,9 @@ export class AddBooksComponent implements OnInit {
     console.log(this.createBookForm.value);
     this.bookService.addBook(this.createBookForm.value).subscribe(
       (response) => (
-        console.log("Success ADD !", response)
+        console.log("Success ADD !", response),
+        this.bookService.refresh(),
+        this.router.navigate(['/books'])
       ),
       (error) => (
         console.error("Error ADD !", error)

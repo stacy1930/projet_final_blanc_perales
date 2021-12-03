@@ -51,6 +51,7 @@ export class DetailBookComponent implements OnInit {
               (response) => (
                 // Si c'est un succès un met un console.log puis on utilise la fonction refresh qui permet de refresh la page
                 console.log('Success !', response),
+                this.bookService.refresh(),
                 this.router.navigate(['/books'])
               ),
               // Si il y a une erreur on met un consol d'erreur
