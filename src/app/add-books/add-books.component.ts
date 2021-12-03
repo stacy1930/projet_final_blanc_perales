@@ -6,6 +6,7 @@ import { Genre } from '../models/Genre';
 import { tap } from 'rxjs/operators';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class AddBooksComponent implements OnInit {
     description: ['', Validators.required]
   });
 
-  constructor(private bookService: BookService, private formBuilder: FormBuilder, private faio: FingerprintAIO) { }
+  constructor(private bookService: BookService, private formBuilder: FormBuilder, private faio: FingerprintAIO, private router: Router) { }
 
   ngOnInit() {
     this.allGenres$ = this.bookService.getAllGenres().pipe(tap(e => console.warn(e)));
@@ -44,16 +45,16 @@ export class AddBooksComponent implements OnInit {
           subtitle: 'Vérification Touch ID',
           description: 'Veuillez scanner votre doigt ou votre face ID'
         }).then((result: any) =>
-              this.bookService.addBook(this.createBookForm.value).subscribe(
-      (response) => (
-        console.log("Success ADD !", response),
-        this.bookService.refresh(),
-        this.router.navigate(['/books'])
-      ),
-      (error) => (
-        console.error("Error ADD !", error)
-      )
-    )
+          this.bookService.addBook(this.createBookForm.value).subscribe(
+            (response) => (
+              console.log("Success ADD !", response),
+              this.bookService.refresh(),
+              this.router.navigate(['/books'])
+            ),
+            (error) => (
+              console.error("Error ADD !", error)
+            )
+          ))
           .catch((error: any) => alert('ERROR TU PEUX PAS ADD'))
         ,
         err => alert('TouchID is not available'),
