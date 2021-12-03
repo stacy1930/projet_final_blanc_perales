@@ -18,13 +18,20 @@
 
 
   <ion-text>
-    <h2 class="title-book">{{book.livre.title}}</h2>
+    <h2 class="title-book" id="title-book">{{book.livre.title}}
+      <ion-button (click)="share()" color="secondary">
+        <ion-icon name="share"></ion-icon>
+      </ion-button>
+    </h2>
   </ion-text>
 
-  <ion-card>
+
+  <ion-card id="detail-book">
     <ion-card-header>
-      <ion-card-title>
-        <ion-fab-button color="light" class="icon-edit" routerLink="/bookEdit/{{book.livre.id}}">
+      <ion-button (click)="getPDF()">Convert to PDF</ion-button>
+
+      <ion-card-title routerLink="/bookEdit/{{book.livre.id}}">
+        <ion-fab-button color="light" class="icon-edit">
           <ion-icon name="create"></ion-icon>
         </ion-fab-button>
       </ion-card-title>
@@ -32,7 +39,7 @@
       </ion-card-title> -->
     </ion-card-header>
     <ion-card-content>
-      <img src="{{ book.livre.image }}" />
+      <img src="{{ book.livre.image }}" id="url-image" />
       <ng-container *ngFor="let genre of allGenres$ | async">
         <ion-chip *ngIf="genre.id === book.livre.genreId">
           <ion-label>{{genre.name}}</ion-label>

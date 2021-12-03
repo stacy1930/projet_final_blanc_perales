@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { merge, Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { BookService } from '../API/book.service';
-import { books } from '../books';
 import { Books } from '../models/Books';
-import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
 
 
 @Component({
@@ -16,8 +14,11 @@ export class ListBooksComponent implements OnInit {
 
   public allBooks;
   public allBooks$: Observable<Books[]>;
+  
+
+
   public listen$: Observable<any>;
-  constructor(private bookService: BookService, private pdfGenerator: PDFGenerator) {
+  constructor(private bookService: BookService) {
 
     this.listen$ = this.bookService.listen();
 
@@ -40,6 +41,7 @@ export class ListBooksComponent implements OnInit {
     // );
 
     // this.allBooks = books;
+
   }
 
   filterByTitle(event) {
@@ -57,37 +59,6 @@ export class ListBooksComponent implements OnInit {
     }
   }
 
-  // ************************************************
-  // ************************************************
-  // Fonction a mettre dans detail book quand api ok
-  // ************************************************
-  // ************************************************
-  htmlSample: any;
-  getPDF() {
-    // this.htmlSample = document.getElementById('book-list').innerHTML;
-    this.htmlSample = `<h1>${document.getElementById('title-list').innerHTML}</h1>
-    ${document.getElementById('book-list').innerHTML}
-    `;
-    let options = {
-      documentSize: 'A4',
-      type: 'share'
-    }
-
-    this.pdfGenerator.fromData(this.htmlSample, options).
-      then(resolve => {
-        // alert(resolve);
-        console.log(resolve);
-
-      }
-      ).catch((err) => {
-        alert(err);
-      });
-  }
-
-  share() {
-    // Share via email
-    // this.socialSharing.share("coucou");
-  }
 
 
 }
