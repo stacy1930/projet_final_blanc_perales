@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { AddGenreComponent } from './add-genre/add-genre.component';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
+
 
 
 @NgModule({
@@ -21,7 +23,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [
-    SocialSharing,
+    SocialSharing, FingerprintAIO,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

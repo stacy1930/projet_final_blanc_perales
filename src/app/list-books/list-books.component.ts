@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { BookService } from '../API/book.service';
 import { Books } from '../models/Books';
-import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
 
 
 @Component({
