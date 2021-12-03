@@ -26,7 +26,7 @@ Pour lancer le front voici les démaraches à suivre :
   
   - PDF Générator
   - Social Sharing
-  - Touch ID
+  - Touch ID + Face ID (Indisponible sur l'émulateur)
   
 --------------------------
 
