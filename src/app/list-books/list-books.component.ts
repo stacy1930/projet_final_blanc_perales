@@ -14,7 +14,7 @@ export class ListBooksComponent implements OnInit {
 
   public allBooks;
   public allBooks$: Observable<Books[]>;
-  
+
 
 
   public listen$: Observable<any>;
@@ -22,10 +22,10 @@ export class ListBooksComponent implements OnInit {
 
     this.listen$ = this.bookService.listen();
 
-   }
+  }
 
   ngOnInit() {
-   // this.allBooks$ = this.bookService.getAllBooks().pipe(tap(e => console.warn(e)));
+    // this.allBooks$ = this.bookService.getAllBooks().pipe(tap(e => console.warn(e)));
 
     this.allBooks$ = merge(of(1), this.listen$).pipe(
       tap((_) => console.log('category-list')),
@@ -48,7 +48,8 @@ export class ListBooksComponent implements OnInit {
     // L'evenement est = à la valeur inscrit en paramètre (ici event)
     const eventContent = event.target.value;
     // Permet d'afficher la liste filtré que si on a appuyé sur entrer ET que la taille de l'evenemnt est supérieur à 0 caractère
-    if (event.key == 'Enter' && eventContent.length > 0) {
+    if (eventContent.length > 0) {
+      // if (event.key == 'Enter' && eventContent.length > 0) {
       // On utilise la fonction filter présent dans le service d'exemple
       this.allBooks$ = this.bookService.applicationFilterByTitle(eventContent).pipe(tap(e => console.warn(e)));
       this.allBooks$.subscribe(data => console.warn(data)
