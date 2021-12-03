@@ -26,7 +26,7 @@ Pour lancer le front voici les démaraches à suivre :
   
   - PDF Générator
   - Social Sharing
-  - Touch ID + Face ID (De préférence sur un vrai téléphone ou un téléphone émulé possédant le touch et face ID)
+  - Touch ID + Face ID (De préférence sur un vrai téléphone ou un téléphone émulé possédant le touch et face ID) : https://ionicframework.com/docs/v3/native/fingerprint-aio/ 
   
 --------------------------
 
