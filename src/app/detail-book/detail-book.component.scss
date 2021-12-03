@@ -21,8 +21,15 @@ ion-toolbar{
 
   .title-book{
     margin-left: 4%;
+    width: 100%;
     // color: #707070;
     color: var(--ion-color-medium);
+  }
+
+  .ionTitle{
+    display: flex;
+    align-items: center;
+    width: 100%;
   }
 
   .icon-edit{

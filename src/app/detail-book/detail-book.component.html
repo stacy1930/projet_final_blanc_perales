@@ -17,20 +17,21 @@
   </ion-header>
 
 
-  <ion-text>
-    <h2 class="title-book" id="title-book">{{book.livre.title}}
+  <ion-text class="ionTitle">
+    <h2 class="title-book" id="title-book">{{book.livre.title}}  </h2>
+
+    <div style="padding-right: 2%;">
       <ion-button (click)="share()" color="secondary">
         <ion-icon name="share"></ion-icon>
       </ion-button>
-    </h2>
+    </div>
   </ion-text>
 
 
   <ion-card id="detail-book">
     <ion-card-header>
       <ion-button (click)="getPDF()">Convert to PDF</ion-button>
-
-      <ion-card-title routerLink="/bookEdit/{{book.livre.id}}">
+      <ion-card-title routerLink="/bookEdit/{{book.livre.id}}" style="width: 100%;">
         <ion-fab-button color="light" class="icon-edit">
           <ion-icon name="create"></ion-icon>
         </ion-fab-button>
