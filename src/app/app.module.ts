@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { AddGenreComponent } from './add-genre/add-genre.component';
-import { PDFGenerator } from '@ionic-native/pdf-generator';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 @NgModule({
@@ -21,6 +21,7 @@ import { PDFGenerator } from '@ionic-native/pdf-generator';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [
+    SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

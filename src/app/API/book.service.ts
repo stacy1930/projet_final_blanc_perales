@@ -11,11 +11,8 @@ import { Genre } from '../models/Genre';
 })
 export class BookService {
 
-  // apiBook = 'http://10.13.33.166:8080/';
   // apiBook = 'https://localhost:8080/';
   apiBook = 'https://projetmivre.herokuapp.com/';
-  // apiBook = 'http://127.0.0.1:8080/';
-  // apiBook = 'http://172.20.10.2/';
 
   httpOptions = {
     headers: new HttpHeaders({

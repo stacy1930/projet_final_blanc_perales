@@ -6,6 +6,8 @@ import { tap } from 'rxjs/operators';
 import { BookService } from '../API/book.service';
 import { Books } from '../models/Books';
 import { Genre } from '../models/Genre';
+import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-detail-book',
@@ -18,7 +20,14 @@ export class DetailBookComponent implements OnInit {
   public book$: Observable<Books>;
   public allGenres$: Observable<Genre[]>;
 
-  constructor(private router: Router, private route: ActivatedRoute, private bookService: BookService, public alertController: AlertController) { }
+  constructor(
+    private pdfGenerator: PDFGenerator,
+    private router: Router,
+    private route: ActivatedRoute,
+    private bookService: BookService,
+    public alertController: AlertController,
+    private socialSharing: SocialSharing
+  ) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("id");
@@ -62,6 +71,38 @@ export class DetailBookComponent implements OnInit {
     });
 
     await alert.present();
+  }
+
+  htmlSample: any;
+  getPDF() {
+    // this.htmlSample = document.getElementById('book-list').innerHTML;
+    this.htmlSample = `<h1>${document.getElementById('title-book').innerHTML}</h1>
+    ${document.getElementById('detail-book').innerHTML}
+    `;
+    let options = {
+      documentSize: 'A4',
+      type: 'share',
+    }
+
+    this.pdfGenerator.fromData(this.htmlSample, options).
+      then(resolve => {
+        // alert(resolve);
+        console.log(resolve);
+
+      }
+      ).catch((err) => {
+        alert(err);
+      });
+  }
+
+  share() {
+    // this.socialSharing.share("coucou");
+
+    this.socialSharing.shareWithOptions({
+      message: document.getElementById('detail-book').innerText,
+      subject: `Mon livre favoris : ${document.getElementById('title-book').innerText}`,
+      url: document.getElementById('url-image').innerText
+    })
   }
 
 }
