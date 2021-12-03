@@ -13,13 +13,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { AddGenreComponent } from './add-genre/add-genre.component';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
+
 
 
 @NgModule({
   declarations: [AppComponent, AddBooksComponent, ListBooksComponent, DetailBookComponent, EditBookComponent, AddGenreComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    SocialSharing, FingerprintAIO,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
