@@ -24,9 +24,9 @@ Pour lancer le front voici les démaraches à suivre :
 --------------------------
 - ### Native Component
   
-  - PDF Générator
-  - Social Sharing
-  - Touch ID + Face ID (De préférence sur un vrai téléphone ou un téléphone émulé possédant le touch et face ID) : https://ionicframework.com/docs/v3/native/fingerprint-aio/ 
+  - PDF Générator ( Se situe dans le détail d'un livre)
+  - Social Sharing ( Se situe dans le détail d'un livre)
+  - Touch ID + Face ID (De préférence sur un vrai téléphone ou un téléphone émulé possédant le touch et face ID) : https://ionicframework.com/docs/v3/native/fingerprint-aio/ A tester dans l'ajout d'un livre au moment de la soumission du formulaire (Bouton Ajouter!)
   
 --------------------------
 
