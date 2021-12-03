@@ -77,7 +77,7 @@ export class DetailBookComponent implements OnInit {
   htmlSample: any;
   getPDF() {
     // this.htmlSample = document.getElementById('book-list').innerHTML;
-    this.htmlSample = `<h1>${document.getElementById('title-book').innerHTML}</h1>
+    this.htmlSample = `<h1 style="color:#428cff; text-align: center;">${document.getElementById('title-book').innerHTML}</h1>
     ${document.getElementById('detail-book').innerHTML}
     `;
     let options = {
