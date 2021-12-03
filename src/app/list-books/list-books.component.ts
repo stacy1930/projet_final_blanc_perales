@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { merge, Observable, of } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 import { BookService } from '../API/book.service';
 import { Books } from '../models/Books';
 
@@ -14,10 +14,34 @@ export class ListBooksComponent implements OnInit {
 
   public allBooks;
   public allBooks$: Observable<Books[]>;
-  constructor(private bookService: BookService) { }
+  
+
+
+  public listen$: Observable<any>;
+  constructor(private bookService: BookService) {
+
+    this.listen$ = this.bookService.listen();
+
+   }
 
   ngOnInit() {
-    this.allBooks$ = this.bookService.getAllBooks().pipe(tap(e => console.warn(e)));
+   // this.allBooks$ = this.bookService.getAllBooks().pipe(tap(e => console.warn(e)));
+
+    this.allBooks$ = merge(of(1), this.listen$).pipe(
+      tap((_) => console.log('category-list')),
+      switchMap((_) => this.bookService.getAllBooks())
+    );
+
+    // this.allBooks = books;
+    // this.allBooks$.subscribe(
+    //   (response) => (
+    //     alert(JSON.stringify(response))
+    //   ),
+    //   (error) => alert(JSON.stringify(error))
+    // );
+
+    // this.allBooks = books;
+
   }
 
   filterByTitle(event) {
